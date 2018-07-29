@@ -1434,7 +1434,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
   _reactNative.AppRegistry.registerComponent(_app.name, function () {
     return _App2.default;
   });
-},11,[12,491,492],"index.js");
+},11,[12,491,493],"index.js");
 __d(function (global, _require, module, exports, _dependencyMap) {
   'use strict';
 
@@ -61307,6 +61307,8 @@ __d(function (global, _require, module, exports, _dependencyMap) {
 
   var _reactNative = _require(_dependencyMap[2], "react-native");
 
+  var _reactNativeImageCropPicker = _require(_dependencyMap[3], "react-native-image-crop-picker");
+
   function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
 
   function _classCallCheck(instance, Constructor) { if (!(instance instanceof Constructor)) { throw new TypeError("Cannot call a class as a function"); } }
@@ -61380,13 +61382,14 @@ __d(function (global, _require, module, exports, _dependencyMap) {
           includeExif: true
         }).then(function (image) {
           console.log('received image', image);
+          var currentImage = {
+            uri: image.path,
+            width: image.width,
+            height: image.height
+          };
 
           _this2.setState({
-            image: {
-              uri: image.path,
-              width: image.width,
-              height: image.height
-            },
+            image: currentImage,
             images: null
           });
         }).catch(function (e) {
@@ -61531,11 +61534,6 @@ __d(function (global, _require, module, exports, _dependencyMap) {
         });
       }
     }, {
-      key: "scaledHeight",
-      value: function scaledHeight(oldW, oldH, newW) {
-        return oldH / oldW * newW;
-      }
-    }, {
       key: "renderImage",
       value: function renderImage(image) {
         return _react3.default.createElement(_reactNative.Image, {
@@ -61547,7 +61545,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
           source: image,
           __source: {
             fileName: _jsxFileName,
-            lineNumber: 159
+            lineNumber: 167
           }
         });
       }
@@ -61567,7 +61565,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
             style: styles.container,
             __source: {
               fileName: _jsxFileName,
-              lineNumber: 167
+              lineNumber: 175
             }
           },
           _react3.default.createElement(
@@ -61575,7 +61573,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
             {
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 168
+                lineNumber: 176
               }
             },
             this.state.image ? this.renderAsset(this.state.image) : null,
@@ -61586,7 +61584,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                   key: i.uri,
                   __source: {
                     fileName: _jsxFileName,
-                    lineNumber: 170
+                    lineNumber: 178
                   }
                 },
                 _this7.renderAsset(i)
@@ -61602,7 +61600,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
               style: styles.button,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 173
+                lineNumber: 181
               }
             },
             _react3.default.createElement(
@@ -61611,7 +61609,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                 style: styles.text,
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 174
+                  lineNumber: 182
                 }
               },
               "Select Single With Camera"
@@ -61626,7 +61624,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
               style: styles.button,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 176
+                lineNumber: 184
               }
             },
             _react3.default.createElement(
@@ -61635,7 +61633,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                 style: styles.text,
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 177
+                  lineNumber: 185
                 }
               },
               "Select Single With Camera With Cropping"
@@ -61650,7 +61648,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
               style: styles.button,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 179
+                lineNumber: 187
               }
             },
             _react3.default.createElement(
@@ -61659,7 +61657,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                 style: styles.text,
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 180
+                  lineNumber: 188
                 }
               },
               "Select Single"
@@ -61674,7 +61672,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
               style: styles.button,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 182
+                lineNumber: 190
               }
             },
             _react3.default.createElement(
@@ -61683,7 +61681,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                 style: styles.text,
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 183
+                  lineNumber: 191
                 }
               },
               "Crop Last Selected Image"
@@ -61698,7 +61696,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
               style: styles.button,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 185
+                lineNumber: 193
               }
             },
             _react3.default.createElement(
@@ -61707,7 +61705,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                 style: styles.text,
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 186
+                  lineNumber: 194
                 }
               },
               "Select Single Returning Base64"
@@ -61722,7 +61720,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
               style: styles.button,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 188
+                lineNumber: 196
               }
             },
             _react3.default.createElement(
@@ -61731,7 +61729,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                 style: styles.text,
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 189
+                  lineNumber: 197
                 }
               },
               "Select Single With Cropping"
@@ -61746,7 +61744,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
               style: styles.button,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 191
+                lineNumber: 199
               }
             },
             _react3.default.createElement(
@@ -61755,7 +61753,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                 style: styles.text,
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 192
+                  lineNumber: 200
                 }
               },
               "Select Single With Circular Cropping"
@@ -61768,7 +61766,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
               style: styles.button,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 194
+                lineNumber: 202
               }
             },
             _react3.default.createElement(
@@ -61777,7 +61775,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                 style: styles.text,
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 195
+                  lineNumber: 203
                 }
               },
               "Select Multiple"
@@ -61790,7 +61788,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
               style: styles.button,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 197
+                lineNumber: 205
               }
             },
             _react3.default.createElement(
@@ -61799,7 +61797,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                 style: styles.text,
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 198
+                  lineNumber: 206
                 }
               },
               "Cleanup All Images"
@@ -61812,7 +61810,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
               style: styles.button,
               __source: {
                 fileName: _jsxFileName,
-                lineNumber: 200
+                lineNumber: 208
               }
             },
             _react3.default.createElement(
@@ -61821,7 +61819,7 @@ __d(function (global, _require, module, exports, _dependencyMap) {
                 style: styles.text,
                 __source: {
                   fileName: _jsxFileName,
-                  lineNumber: 201
+                  lineNumber: 209
                 }
               },
               "Cleanup Single Image"
@@ -61835,13 +61833,28 @@ __d(function (global, _require, module, exports, _dependencyMap) {
   }(_react2.Component));
 
   exports.default = App;
-},491,[118,179,12],"App.js");
+},491,[118,179,12,492],"App.js");
+__d(function (global, _require, module, exports, _dependencyMap) {
+  Object.defineProperty(exports, "__esModule", {
+    value: true
+  });
+
+  var _react = _require(_dependencyMap[0], "react");
+
+  var _react2 = _interopRequireDefault(_react);
+
+  var _reactNative = _require(_dependencyMap[1], "react-native");
+
+  function _interopRequireDefault(obj) { return obj && obj.__esModule ? obj : { default: obj }; }
+
+  exports.default = _reactNative.NativeModules.ImageCropPicker;
+},492,[118,12],"node_modules\\react-native-image-crop-picker\\index.js");
 __d(function (global, _require, module, exports, _dependencyMap) {
   module.exports = {
     "name": "projectBase",
     "displayName": "projectBase"
   };
-},492,[],"app.json");
+},493,[],"app.json");
 require(44);
 require(11);
 //# sourceMappingURL=index.map

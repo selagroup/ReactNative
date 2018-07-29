@@ -11,6 +11,7 @@ import {
   View, Text, StyleSheet, ScrollView, Alert,
   Image, TouchableOpacity, NativeModules, Dimensions
 } from 'react-native';
+import {Image as ImageInterface} from 'react-native-image-crop-picker';
 
 var ImagePicker = NativeModules.ImageCropPicker;
 
@@ -31,7 +32,13 @@ const styles = StyleSheet.create({
   }
 });
 
-export default class App extends Component {
+type ImageState = { image: ?ImageInterface, images: ?Array<ImageInterface> };
+
+type Props = {};
+
+export default class App extends Component<Props, ImageState> {
+
+  state : ImageState;
 
   constructor() {
     super();
@@ -41,7 +48,7 @@ export default class App extends Component {
     };
   }
 
-  pickSingleWithCamera(cropping) {
+  pickSingleWithCamera(cropping : boolean) {
     ImagePicker.openCamera({
       cropping: cropping,
       width: 500,
@@ -49,14 +56,15 @@ export default class App extends Component {
       includeExif: true,
     }).then(image => {
       console.log('received image', image);
+      const currentImage = {uri: image.path, width: image.width, height: image.height};
       this.setState({
-        image: {uri: image.path, width: image.width, height: image.height},
+        image: currentImage,
         images: null
       });
     }).catch(e => alert(e));
   }
 
-  pickSingleBase64(cropit) {
+  pickSingleBase64(cropit : boolean) {
     ImagePicker.openPicker({
       width: 300,
       height: 300,
@@ -112,7 +120,7 @@ export default class App extends Component {
     });
   }
 
-  pickSingle(cropit, circular=false) {
+  pickSingle(cropit : boolean, circular : boolean = false) {
     ImagePicker.openPicker({
       width: 300,
       height: 300,
@@ -151,15 +159,15 @@ export default class App extends Component {
     }).catch(e => alert(e));
   }
 
-  scaledHeight(oldW, oldH, newW) {
-    return (oldH / oldW) * newW;
-  }  
+  // scaledHeight(oldW, oldH, newW) {
+  //   return (oldH / oldW) * newW;
+  // }  
 
-  renderImage(image) {
+  renderImage(image : ImageInterface) {
     return <Image style={{width: 300, height: 300, resizeMode: 'contain'}} source={image} />
   }
 
-  renderAsset(image) {
+  renderAsset(image : ImageInterface) {
     return this.renderImage(image);
   }
 
